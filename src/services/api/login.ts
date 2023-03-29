@@ -1,6 +1,6 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import { api } from '..';
 
 export async function getFakeCaptcha(
   params: {
@@ -8,11 +8,9 @@ export async function getFakeCaptcha(
   },
   options?: { [key: string]: any },
 ) {
-  return request<API.FakeCaptcha>('/api/login/captcha', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
+  return api.get<API.FakeCaptcha>({
+    endpoint: '/api/login/account',
+    params: params,
+    options: options,
   });
 }

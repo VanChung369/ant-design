@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import defaultSettings from '../config/defaultSettings';
 import { default as Page403 } from './pages/exception/403';
 import { default as Page404 } from './pages/exception/404';
-import { persistor, store } from './redux/configStore';
+import { persistor, store } from './redux/store';
 import { errorConfig } from './utils/requestErrorConfig';
 
 const isDev = process.env.NODE_ENV === 'development';
@@ -51,6 +51,7 @@ export async function getInitialState(): Promise<{
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   const onBeforeLift: any = (store: any) => () => {
     const state = store.getState();
+
     console.log(state);
   };
 

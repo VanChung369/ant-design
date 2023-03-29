@@ -1,6 +1,6 @@
 import { PageContainer } from '@ant-design/pro-components';
-import { Card } from 'antd';
 import React from 'react';
+import FormikWrapper from '../components/FormikWrapper';
 
 // const InfoCard: React.FC<{
 //   title: string;
@@ -82,7 +82,38 @@ const Welcome: React.FC = () => {
   // const { initialState } = useModel('@@initialState');
   return (
     <PageContainer>
-      <Card>Welcome</Card>
+      <FormikWrapper
+        initialValues={{}}
+        onSubmit={(value: any) => {
+          console.log(value);
+        }}
+      >
+        {(formik: any) => (
+          <form onSubmit={formik.handleSubmit}>
+            <input
+              type="text"
+              name="email"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? <div>{formik.errors.email}</div> : null}
+            <input
+              type="password"
+              name="password"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.password}
+            />
+            {formik.touched.password && formik.errors.password ? (
+              <div>{formik.errors.password}</div>
+            ) : null}
+            <button type="submit" disabled={formik.isSubmitting}>
+              Submit
+            </button>
+          </form>
+        )}
+      </FormikWrapper>
     </PageContainer>
   );
 };

@@ -1,48 +1,35 @@
 // @ts-ignore
 /* eslint-disable */
-import { request } from '@umijs/max';
+import { api } from '..';
 
-/** Update an existing pet PUT /pet */
 export async function updatePet(body: API.Pet, options?: { [key: string]: any }) {
-  return request<any>('/pet', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
+  return api.put<any>({
+    endpoint: '/pet',
+    headers: { 'Content-Type': 'application/json' },
+    body: body,
+    options: options,
   });
 }
 
-/** Add a new pet to the store POST /pet */
 export async function addPet(body: API.Pet, options?: { [key: string]: any }) {
-  return request<any>('/pet', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    data: body,
-    ...(options || {}),
+  return api.post<any>({
+    endpoint: '/pet',
+    headers: { 'Content-Type': 'application/json' },
+    body: body,
+    options: options,
   });
 }
 
-/** Find pet by ID Returns a single pet GET /pet/${param0} */
-export async function getPetById(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
-  params: API.getPetByIdParams,
-  options?: { [key: string]: any },
-) {
+export async function getPetById(params: API.getPetByIdParams, options?: { [key: string]: any }) {
   const { petId: param0, ...queryParams } = params;
-  return request<API.Pet>(`/pet/${param0}`, {
-    method: 'GET',
-    params: { ...queryParams },
-    ...(options || {}),
+  return api.get<API.Pet>({
+    endpoint: `/pet/${param0}`,
+    params: queryParams,
+    options: options,
   });
 }
 
-/** Updates a pet in the store with form data POST /pet/${param0} */
 export async function updatePetWithForm(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.updatePetWithFormParams,
   body: { name?: string; status?: string },
   options?: { [key: string]: any },
@@ -61,35 +48,25 @@ export async function updatePetWithForm(
     }
   });
 
-  return request<any>(`/pet/${param0}`, {
-    method: 'POST',
-    params: { ...queryParams },
-    data: formData,
-    ...(options || {}),
+  return api.postFormData<any>({
+    endpoint: `/pet/${param0}`,
+    params: queryParams,
+    body: formData,
+    options: options,
   });
 }
 
-/** Deletes a pet DELETE /pet/${param0} */
 export async function deletePet(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.deletePetParams & {
-    // header
     api_key?: string;
   },
   options?: { [key: string]: any },
 ) {
   const { petId: param0, ...queryParams } = params;
-  return request<any>(`/pet/${param0}`, {
-    method: 'DELETE',
-    headers: {},
-    params: { ...queryParams },
-    ...(options || {}),
-  });
+  return api.delete<any>({ endpoint: `/pet/${param0}`, params: queryParams, options: options });
 }
 
-/** uploads an image POST /pet/${param0}/uploadImage */
 export async function uploadFile(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.uploadFileParams,
   body: { additionalMetadata?: string; file?: string },
   file?: File,
@@ -113,41 +90,24 @@ export async function uploadFile(
     }
   });
 
-  return request<API.ApiResponse>(`/pet/${param0}/uploadImage`, {
-    method: 'POST',
-    params: { ...queryParams },
-    data: formData,
-    requestType: 'form',
-    ...(options || {}),
+  return api.postFormData<API.ApiResponse>({
+    endpoint: `/pet/${param0}/uploadImage`,
+    params: queryParams,
+    body: formData,
+    options: options,
   });
 }
 
-/** Finds Pets by status Multiple status values can be provided with comma separated strings GET /pet/findByStatus */
 export async function findPetsByStatus(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.findPetsByStatusParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Pet[]>('/pet/findByStatus', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return api.get<API.Pet[]>({ endpoint: '/pet/findByStatus', params: params, options: options });
 }
 
-/** Finds Pets by tags Muliple tags can be provided with comma separated strings. Use         tag1, tag2, tag3 for testing. GET /pet/findByTags */
 export async function findPetsByTags(
-  // 叠加生成的Param类型 (非body参数swagger默认没有生成对象)
   params: API.findPetsByTagsParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.Pet[]>('/pet/findByTags', {
-    method: 'GET',
-    params: {
-      ...params,
-    },
-    ...(options || {}),
-  });
+  return api.get<API.Pet[]>({ endpoint: '/pet/findByTags', params: params, options: options });
 }

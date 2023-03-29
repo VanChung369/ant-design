@@ -1,6 +1,8 @@
+import formatMessage from '@/components/FormatMessage';
 import type { RequestOptions } from '@@/plugin-request/request';
 import type { RequestConfig } from '@umijs/max';
 import { message, notification } from 'antd';
+import { isUndefined } from './utils';
 
 type CodeMessage = {
   [key: number]: string;
@@ -91,9 +93,15 @@ export const errorConfig: RequestConfig = {
           }
         }
       } else if (error.response) {
-        const errorText = codeMessage[error.response.status] || error.response.statusText;
-        console.log('error', error.response);
-        message.error(`${errorText}`);
+        if (!isUndefined(typeof error.response?.data?.code)) {
+          formatMessage({
+            descriptor: { id: 'pages.login.success', defaultMessage: error.response.statusText },
+            type: 'error',
+          });
+        } else if (error.response.data.code === '') {
+          const errorText = codeMessage[error.response.status] || error.response.statusText;
+          message.error(`${errorText}`);
+        }
       } else if (error.request) {
         // The request has been successfully initiated, but did not receive a response
         // \ `` `Error.request \` `is an instance of XMLHTTPREQUEST in the browser,
