@@ -1,36 +1,5 @@
+import { UNDEFINED } from '@/constants/type';
 import { IObject, OpenCloseCharacter } from './typings';
-
-export const BREAK_POINT = {
-  mobile_sm: 575,
-  tablet_ml: 767,
-  desktop_lg: 991,
-  desktop_xl: 1200,
-  desktop_xxl: 1600,
-};
-
-export const RGB = 'rgb';
-
-export const RGBA = 'rgba';
-
-export const HSL = 'hsl';
-
-export const HSLA = 'hsla';
-
-export const COLOR_MODELS = [RGB, RGBA, HSL, HSLA];
-
-export const FUNCTION = 'function';
-
-export const PROPERTY = 'property';
-
-export const ARRAY = 'array';
-
-export const OBJECT = 'object';
-
-export const STRING = 'string';
-
-export const NUMBER = 'number';
-
-export const UNDEFINED = 'undefined';
 
 export const IS_WINDOW = typeof window !== UNDEFINED;
 

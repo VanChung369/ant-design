@@ -1,18 +1,25 @@
 import { Formik } from 'formik';
+import { FC } from 'react';
 
-function FormikWrapper({
+const FormikWrapper: FC<FormikWrapper.FormikProps> = ({
   initialValues,
   validationSchema,
   onSubmit,
   children,
-}: FormikWrapper.FormikWrapperProps) {
+  innerRef,
+}) => {
   return (
-    <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+    <Formik
+      innerRef={innerRef}
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={onSubmit}
+    >
       {(formik) => {
         return children(formik);
       }}
     </Formik>
   );
-}
+};
 
 export default FormikWrapper;

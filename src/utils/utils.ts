@@ -1,15 +1,6 @@
+import { FUNCTION, NUMBER, OBJECT, STRING, UNDEFINED } from '@/constants/type';
 import { parse } from 'querystring';
-import {
-  DEFAULT_UNIT_PRESETS,
-  FUNCTION,
-  IS_WINDOW,
-  NUMBER,
-  OBJECT,
-  OPEN_CLOSED_CHARACTERS,
-  STRING,
-  TINY_NUM,
-  UNDEFINED,
-} from './consts';
+import { DEFAULT_UNIT_PRESETS, IS_WINDOW, OPEN_CLOSED_CHARACTERS, TINY_NUM } from './consts';
 import { FlattedElement, IArrayFormat, IObject, OpenCloseCharacter, SplitOptions } from './typings';
 
 /* eslint-disable */

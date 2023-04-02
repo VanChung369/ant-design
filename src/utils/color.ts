@@ -1,4 +1,4 @@
-import { HSL, HSLA, RGB, RGBA } from './consts';
+import { HSL, HSLA, RGB, RGBA } from '@/constants/style';
 import { splitBracket, splitComma } from './utils';
 
 export function cutHex(hex: string) {

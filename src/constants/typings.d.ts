@@ -1,5 +1,5 @@
 declare namespace CONSTANT {
-  type headers = {
+  type API = {
     'Content-Type': string;
     Accept: string;
     'Access-Control-Allow-Headers': string;

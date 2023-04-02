@@ -51,7 +51,6 @@ export async function getInitialState(): Promise<{
 export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
   const onBeforeLift: any = (store: any) => () => {
     const state = store.getState();
-
     console.log(state);
   };
 

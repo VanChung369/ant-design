@@ -76,6 +76,12 @@ export default defineConfig({
    */
   fastRefresh: true,
 
+  /**
+   * @name metas Configuration Meta Tags
+   * @description A nice SEO
+   */
+  metas: [],
+
   //============== The following are the plugin configurations of max ===============
   /**
    * @name dataflow plugin
@@ -97,6 +103,7 @@ export default defineConfig({
   title: 'Ant Design',
   layout: {
     locale: true,
+    siderWidth: 208,
     ...defaultSettings,
   },
 
