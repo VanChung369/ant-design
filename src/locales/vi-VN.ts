@@ -1,3 +1,4 @@
+import common from './vi-VN/common';
 import component from './vi-VN/component';
 import globalHeader from './vi-VN/globalHeader';
 import menu from './vi-VN/menu';
@@ -23,4 +24,5 @@ export default {
   ...settings,
   ...pwa,
   ...component,
+  ...common,
 };

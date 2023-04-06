@@ -1,5 +1,6 @@
 import TextEllipsis from '@/components/TypographyDesign/components/TextEllipsis';
-import ParagraphSuffix from '@/components/TypographyDesign/components/TextSuffix';
+import TextExpand from '@/components/TypographyDesign/components/TextExpand';
+import TextSuffix from '@/components/TypographyDesign/components/TextSuffix';
 import { TYPE_TYPOGRAPHY } from '@/constants/type';
 import classNames from 'classnames';
 import { FC } from 'react';
@@ -22,14 +23,16 @@ const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
   onChange,
   editing,
   children,
+  rowsNumber,
+  textButton,
   ...props
 }) => {
   let typographyRender = customComponent;
 
   switch (typeTypography) {
-    case TYPE_TYPOGRAPHY.PARAGRAPH_SUFFIX:
+    case TYPE_TYPOGRAPHY.TEXT_SUFFIX:
       typographyRender = (
-        <ParagraphSuffix
+        <TextSuffix
           text={text}
           onChange={onChange}
           textTooltip={textTooltip}
@@ -52,6 +55,7 @@ const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
           isShorten={isShorten}
           copyable={copyable}
           text={text}
+          className={className}
           textTooltip={textTooltip}
           {...props}
         >
@@ -59,9 +63,19 @@ const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
         </TextEllipsis>
       );
       break;
+    case TYPE_TYPOGRAPHY.TEXT_EXPAND:
+      typographyRender = (
+        <TextExpand
+          text={text}
+          className={className}
+          rowsNumber={rowsNumber}
+          textButton={textButton}
+        />
+      );
+      break;
     default:
       typographyRender = (
-        <ParagraphSuffix text={text} isShorten={isShorten} className={className} {...props} />
+        <TextSuffix text={text} isShorten={isShorten} className={className} {...props} />
       );
       break;
   }

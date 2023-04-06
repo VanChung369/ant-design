@@ -4,7 +4,7 @@ export default {
   'pages.login.accountLogin.errorMessage': 'Sai tên người dùng và mật khẩu (admin/admin)',
   'pages.login.failure': 'Đăng nhập không thành công, vui lòng thử lại! ',
   'pages.login.success': 'Đăng nhập thành công! ',
-  'pages.login.username.placeholder': 'Tên người dùng: quản trị viên hoặc người dùng',
+  'pages.login.username.placeholder': 'Tên người dùng: Admin hoặc User',
   'pages.login.username.required': 'Tên người dùng là bắt buộc! ',
   'pages.login.password.placeholder': 'Mật khẩu: admin',
   'pages.login.password.required': 'Mật khẩu là bắt buộc! ',
