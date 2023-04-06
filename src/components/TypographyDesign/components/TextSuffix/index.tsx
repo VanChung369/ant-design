@@ -4,7 +4,7 @@ import { FC, ReactNode, useMemo } from 'react';
 
 const { Paragraph } = Typography;
 
-type ParagraphSuffixProps = {
+type TextSuffixProps = {
   text?: string;
   className?: string;
   icon?: ReactNode;
@@ -22,7 +22,7 @@ type ParagraphSuffixProps = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-redeclare
-const ParagraphSuffix: FC<ParagraphSuffixProps> = ({
+const TextSuffix: FC<TextSuffixProps> = ({
   text,
   onChange,
   className,
@@ -72,4 +72,4 @@ const ParagraphSuffix: FC<ParagraphSuffixProps> = ({
   );
 };
 
-export default ParagraphSuffix;
+export default TextSuffix;

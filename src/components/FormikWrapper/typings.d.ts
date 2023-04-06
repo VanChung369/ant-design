@@ -5,5 +5,6 @@ declare namespace FormikWrapper {
     onSubmit?: MouseEventHandler<HTMLElement>;
     children: ReactNode;
     innerRef?: any;
+    [key: string]: any;
   };
 }
