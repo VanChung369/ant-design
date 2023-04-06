@@ -13,6 +13,7 @@ export const NUMBER = 'number';
 export const UNDEFINED = 'undefined';
 
 export const TYPE_TYPOGRAPHY = {
-  PARAGRAPH_SUFFIX: 'PARAGRAPH_SUFFIX',
+  TEXT_SUFFIX: 'TEXT_SUFFIX',
   TEXT_ELLIPSIS: 'TEXT_ELLIPSIS',
+  TEXT_EXPAND: 'TEXT_EXPAND',
 };

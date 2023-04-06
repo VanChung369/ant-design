@@ -2,7 +2,7 @@ declare namespace TypographyDesign {
   type TypographyProps = {
     isShorten?: boolean;
     copyable?: any;
-
+    rowsNumber?: number;
     icon?: ReactNode;
     typeTypography?: string;
     className?: string;
@@ -21,6 +21,7 @@ declare namespace TypographyDesign {
     onEnd?: function;
     triggerType?: ('icon' | 'text')[];
     enterIcon?: ReactNode;
+    textButton?: string;
 
     [key: string]: any;
   };
