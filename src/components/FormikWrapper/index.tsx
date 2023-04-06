@@ -7,6 +7,7 @@ const FormikWrapper: FC<FormikWrapper.FormikProps> = ({
   onSubmit,
   children,
   innerRef,
+  ...props
 }) => {
   return (
     <Formik
@@ -14,6 +15,7 @@ const FormikWrapper: FC<FormikWrapper.FormikProps> = ({
       initialValues={initialValues}
       validationSchema={validationSchema}
       onSubmit={onSubmit}
+      {...props}
     >
       {(formik) => {
         return children(formik);

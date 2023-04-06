@@ -1,5 +1,5 @@
-import ParagraphSuffix from '@/components/TypographyDesign/components/ParagraphSuffix';
 import TextEllipsis from '@/components/TypographyDesign/components/TextEllipsis';
+import ParagraphSuffix from '@/components/TypographyDesign/components/TextSuffix';
 import { TYPE_TYPOGRAPHY } from '@/constants/type';
 import classNames from 'classnames';
 import { FC } from 'react';
