@@ -93,9 +93,12 @@ export const errorConfig: RequestConfig = {
           }
         }
       } else if (error.response) {
-        if (!isUndefined(typeof error.response?.data?.code)) {
+        if (!isUndefined(error.response?.data?.code)) {
           formatMessage({
-            descriptor: { id: 'pages.login.success', defaultMessage: error.response.statusText },
+            descriptor: {
+              id: `codeMessage.${error.response?.data?.code}`,
+              defaultMessage: error.response.statusText,
+            },
             type: 'error',
           });
         } else if (error.response.data.code === '') {

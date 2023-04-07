@@ -1,3 +1,5 @@
+import codeMessage from '@/locales/en-US/codeMessage';
+import statusResponse from '@/locales/en-US/statusResponse';
 import common from './en-US/common';
 import component from './en-US/component';
 import globalHeader from './en-US/globalHeader';
@@ -24,4 +26,6 @@ export default {
   ...component,
   ...pages,
   ...common,
+  ...statusResponse,
+  ...codeMessage,
 };

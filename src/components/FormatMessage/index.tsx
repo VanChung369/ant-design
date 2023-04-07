@@ -5,7 +5,7 @@ export default function formatMessage({ descriptor, type, value }: FormatMessage
   const intl = getIntl(getLocale());
 
   message.config({
-    maxCount: 1,
+    maxCount: 2,
     duration: 3,
   });
 
