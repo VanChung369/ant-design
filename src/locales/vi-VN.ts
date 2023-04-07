@@ -1,3 +1,5 @@
+import codeMessage from '@/locales/vi-VN/codeMessage';
+import statusResponse from '@/locales/vi-VN/statusResponse';
 import common from './vi-VN/common';
 import component from './vi-VN/component';
 import globalHeader from './vi-VN/globalHeader';
@@ -6,7 +8,6 @@ import pages from './vi-VN/pages';
 import pwa from './vi-VN/pwa';
 import settingDrawer from './vi-VN/settingDrawer';
 import settings from './vi-VN/settings';
-
 export default {
   'navBar.lang': 'ngôn ngữ',
   'layout.user.link.help': 'giúp đỡ',
@@ -25,4 +26,6 @@ export default {
   ...pwa,
   ...component,
   ...common,
+  ...statusResponse,
+  ...codeMessage,
 };
