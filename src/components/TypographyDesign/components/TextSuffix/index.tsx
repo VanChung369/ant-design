@@ -44,7 +44,6 @@ const TextSuffix: FC<TextSuffixProps> = ({
       }
       return '--';
     }, [text]);
-
   return (
     <Paragraph
       className={classNames(className)}
@@ -61,7 +60,9 @@ const TextSuffix: FC<TextSuffixProps> = ({
       }}
       ellipsis={{
         suffix: isShorten
-          ? `${editableStrShorten}...${editableStrWithSuffixSuffixPart}`
+          ? text
+            ? `${editableStrShorten}...${editableStrWithSuffixSuffixPart}`
+            : '--'
           : editableStrWithSuffixSuffixPart,
         tooltip: text,
       }}

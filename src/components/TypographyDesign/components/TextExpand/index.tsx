@@ -26,7 +26,7 @@ const TextExpand: FC<TextExpandProps> = ({ text, className, textButton, rowsNumb
         {...props}
         ellipsis={ellipsis ? { rows: rowsNumber || 5 } : false}
       >
-        {text}
+        {text ?? '--'}
       </Paragraph>
 
       <ButtonDesign

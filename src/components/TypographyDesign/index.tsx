@@ -45,6 +45,7 @@ const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
           minRows={minRows}
           maxRows={maxRows}
           isShorten={isShorten}
+          copyable={copyable}
           {...props}
         />
       );
