@@ -550,3 +550,39 @@ export function deepFlat<T extends any[]>(arr: T): Array<FlattedElement<T[0]>> {
     return prev;
   }, [] as any[]);
 }
+
+export function removeNullProperties(obj: any): { [key: string]: any } {
+  Object.keys(obj).forEach((key: string) => {
+    let value = obj[key];
+    let hasProperties = value && Object.keys(value).length > 0;
+    if (value === null || value === '' || value === undefined) {
+      delete obj[key];
+    } else if (typeof value !== 'string' && hasProperties) {
+      removeNullProperties(value);
+    }
+  });
+  return obj;
+}
+
+export function flattenObject(obj: any, objPath = '', flatObject: any = {}) {
+  if (obj === null || obj === undefined) return flatObject;
+
+  let hasProperties = obj && Object.keys(obj).length > 0;
+  if (typeof obj === 'string' || !hasProperties) {
+    flatObject[objPath || "''"] = obj;
+    return flatObject;
+  }
+
+  Object.keys(obj).forEach((key) => {
+    let value = obj[key];
+    let currentPath = (objPath.length > 0 ? objPath + '.' : '') + key;
+    if (isArray(value) && value?.length > 0) {
+      value.forEach((arrayEntry, index) => {
+        flattenObject(arrayEntry, currentPath + '[' + index + ']', flatObject);
+      });
+      return;
+    }
+    flattenObject(value, currentPath, flatObject);
+  });
+  return flatObject;
+}

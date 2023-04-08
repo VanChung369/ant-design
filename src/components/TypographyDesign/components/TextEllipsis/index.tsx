@@ -34,7 +34,7 @@ const TextEllipsis: FC<TextEllipsisProps> = ({
       ellipsis={isShorten ? ellipsis : isShorten}
       {...props}
     >
-      {text}
+      {text ?? '--'}
       {children}
     </Text>
   );

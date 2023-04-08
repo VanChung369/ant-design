@@ -8,7 +8,7 @@ export type EventSourceStatus = 'init' | 'open' | 'closed' | 'error';
 
 export type EventSourceEvent = Event & { data: string };
 
-export function useEventSource(
+export default function useEventSource(
   url: string,
   withCredentials?: boolean,
   ESClass: EventSourceConstructor = EventSource,
