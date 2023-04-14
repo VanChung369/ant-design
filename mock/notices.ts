@@ -7,7 +7,7 @@ const getNotices = (req: Request, res: Response) => {
         id: '000000001',
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/MSbDR4FR2MUAAAAAAAAAAAAAFl94AQBr',
-        title: 'You received 14 new weekly newspapers',
+        title: 'Admin notification',
         datetime: '2017-08-09',
         type: 'notification',
       },
@@ -15,7 +15,7 @@ const getNotices = (req: Request, res: Response) => {
         id: '000000002',
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/hX-PTavYIq4AAAAAAAAAAAAAFl94AQBr',
-        title: 'Admin you recommended has passed the third round of interview',
+        title: 'Admin notification',
         datetime: '2017-08-08',
         type: 'notification',
       },
@@ -23,7 +23,7 @@ const getNotices = (req: Request, res: Response) => {
         id: '000000003',
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/jHX5R5l3QjQAAAAAAAAAAAAAFl94AQBr',
-        title: 'This template can distinguish between multiple notification types',
+        title: 'Admin notification',
         datetime: '2017-08-07',
         read: true,
         type: 'notification',
@@ -32,7 +32,7 @@ const getNotices = (req: Request, res: Response) => {
         id: '000000004',
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/Wr4mQqx6jfwAAAAAAAAAAAAAFl94AQBr',
-        title: 'Icons on the left are used to distinguish between different types',
+        title: 'Admin notification',
         datetime: '2017-08-07',
         type: 'notification',
       },
@@ -40,8 +40,7 @@ const getNotices = (req: Request, res: Response) => {
         id: '000000005',
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/Mzj_TbcWUj4AAAAAAAAAAAAAFl94AQBr',
-        title:
-          'The content should not exceed two lines, and it will be automatically truncated when it exceeds',
+        title: 'Admin notification',
         datetime: '2017-08-07',
         type: 'notification',
       },
@@ -71,8 +70,7 @@ const getNotices = (req: Request, res: Response) => {
         avatar:
           'https://mdn.alipayobjects.com/yuyan_qk0oxh/afts/img/wPadR5M9918AAAAAAAAAAAAAFl94AQBr',
         title: 'title',
-        description:
-          'This template is used to remind who has interacted with you, and the avatar of "who" is placed on the left',
+        description: 'Admin commented on you',
         datetime: '2017-08-07',
         type: 'message',
         clickClose: true,
@@ -80,7 +78,7 @@ const getNotices = (req: Request, res: Response) => {
       {
         id: '000000009',
         title: 'mission name',
-        description: 'The task needs to be started before 2017-01-12 20:00',
+        description: 'Admin commented on you',
         extra: 'has not started',
         status: 'todo',
         type: 'event',
@@ -88,8 +86,7 @@ const getNotices = (req: Request, res: Response) => {
       {
         id: '000000010',
         title: 'Third -party emergency code change',
-        description:
-          'Guanlin is submitted in 2017-01-06, and you need to complete the code change task before 2017-01-07',
+        description: 'Admin commented on you',
         extra: 'Expire immediately',
         status: 'urgent',
         type: 'event',
@@ -97,7 +94,7 @@ const getNotices = (req: Request, res: Response) => {
       {
         id: '000000011',
         title: 'Information security test',
-        description: 'Assign Takeshi to complete the update and release before 2017-01-09',
+        description: 'Admin commented on you',
         extra: 'It took 8 days',
         status: 'doing',
         type: 'event',
@@ -105,8 +102,7 @@ const getNotices = (req: Request, res: Response) => {
       {
         id: '000000012',
         title: 'ABCD Version release',
-        description:
-          'Guanlin Submit in 2017-01-06, you need to complete the code change task before 2017-01-07',
+        description: 'Admin commented on you',
         extra: 'in progress',
         status: 'processing',
         type: 'event',

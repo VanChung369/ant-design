@@ -17,3 +17,8 @@ export const TYPE_TYPOGRAPHY = {
   TEXT_ELLIPSIS: 'TEXT_ELLIPSIS',
   TEXT_EXPAND: 'TEXT_EXPAND',
 };
+
+export const TYPE_TABLE = {
+  TABLE: 'TABLE',
+  EDIT_TABLE: 'EDIT_TABLE',
+};
