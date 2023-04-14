@@ -1,12 +1,13 @@
 import TextEllipsis from '@/components/TypographyDesign/components/TextEllipsis';
 import TextExpand from '@/components/TypographyDesign/components/TextExpand';
 import TextSuffix from '@/components/TypographyDesign/components/TextSuffix';
+import { TypographyDesignProps } from '@/components/TypographyDesign/typings';
 import { TYPE_TYPOGRAPHY } from '@/constants/type';
 import classNames from 'classnames';
-import { FC } from 'react';
+import { FC, memo } from 'react';
 import style from './index.less';
 
-const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
+const TypographyDesign: FC<TypographyDesignProps> = ({
   text,
   copyable,
   customComponent,
@@ -84,4 +85,4 @@ const TypographyDesign: FC<TypographyDesign.TypographyProps> = ({
   return <div className={classNames(style.paragraph)}>{typographyRender}</div>;
 };
 
-export default TypographyDesign;
+export default memo(TypographyDesign);

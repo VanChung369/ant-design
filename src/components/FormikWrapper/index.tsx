@@ -1,7 +1,8 @@
+import { FormikWrapperProps } from '@/components/FormikWrapper/typings';
 import { Formik } from 'formik';
 import { FC } from 'react';
 
-const FormikWrapper: FC<FormikWrapper.FormikProps> = ({
+const FormikWrapper: FC<FormikWrapperProps> = ({
   initialValues,
   validationSchema,
   onSubmit,

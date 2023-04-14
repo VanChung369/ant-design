@@ -1,3 +1,4 @@
+import TableDesign from '@/components/TableDesign';
 import { addRule, removeRule, rule, updateRule } from '@/services/api/api';
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType, ProColumns, ProDescriptionsItemProps } from '@ant-design/pro-components';
@@ -8,7 +9,6 @@ import {
   ProDescriptions,
   ProFormText,
   ProFormTextArea,
-  ProTable,
 } from '@ant-design/pro-components';
 import { FormattedMessage, useIntl } from '@umijs/max';
 import { Button, Drawer, Input, message } from 'antd';
@@ -215,7 +215,7 @@ const TableList: React.FC = () => {
 
   return (
     <PageContainer>
-      <ProTable<API.RuleListItem, API.PageParams>
+      <TableDesign<API.RuleListItem, API.PageParams>
         headerTitle={intl.formatMessage({
           id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
@@ -225,6 +225,7 @@ const TableList: React.FC = () => {
         search={{
           labelWidth: 120,
         }}
+        pagination={{ size: 'default' }}
         toolBarRender={() => [
           <Button
             type="primary"
