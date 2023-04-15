@@ -1,11 +1,16 @@
 import ButtonDesign from '@/components/ButtonDesign';
+import DescriptionsDesign from '@/components/DescriptionsDesign';
 import DividerDesign from '@/components/DividerDesign';
+import formatMessage from '@/components/FormatMessage';
 import NumberFormatDesign from '@/components/NumberFormatDesign';
+import StatusDesign from '@/components/StatusDesign';
 import TableDesign from '@/components/TableDesign';
 import TypographyDesign from '@/components/TypographyDesign';
 import { TYPE_TABLE, TYPE_TYPOGRAPHY } from '@/constants/type';
+import { LikeOutlined, MenuOutlined, MessageOutlined, StarOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
-import { PageContainer, ProFormRadio } from '@ant-design/pro-components';
+import { PageContainer, ProDescriptions, ProFormRadio } from '@ant-design/pro-components';
+import { Button, Tag } from 'antd';
 import React, { useState } from 'react';
 
 const waitTime = (time: number = 100) => {
@@ -48,10 +53,73 @@ const defaultData: DataSourceType[] = [
   },
 ];
 
+const data = [
+  {
+    key: 'key1',
+    name: 'John Brown',
+    age: 32,
+    address: 'New York No. 1 Lake Park',
+    index: 0,
+  },
+  {
+    key: 'key2',
+    name: 'Jim Green',
+    age: 42,
+    address: 'London No. 1 Lake Park',
+    index: 1,
+  },
+  {
+    key: 'key3',
+    name: 'Joe Black',
+    age: 32,
+    address: 'Sidney No. 1 Lake Park',
+    index: 2,
+  },
+];
+
+const IconText = ({ icon, text }: { icon: any; text: string }) => (
+  <span>
+    {React.createElement(icon, { style: { marginInlineEnd: 8 } })}
+    {text}
+  </span>
+);
+
+const dataSource1 = [
+  {
+    title: 'Sky of the sparrow',
+  },
+  {
+    title: 'Ant Design',
+  },
+  {
+    title: 'Ant Financial Experience Technology',
+  },
+  {
+    title: 'TechUI',
+  },
+];
+
 const Welcome: React.FC = () => {
   const [editableKeys, setEditableRowKeys] = useState<React.Key[]>([]);
   const [dataSource, setDataSource] = useState<readonly DataSourceType[]>([]);
   const [position, setPosition] = useState<'top' | 'bottom' | 'hidden'>('bottom');
+  const [dataSource2, setDatasource2] = useState(data);
+
+  const dragHandleRender = (rowData: any, idx: any) => (
+    <>
+      <MenuOutlined style={{ cursor: 'grab', color: 'gold' }} />
+      &nbsp;{idx + 1} - {rowData.name}
+    </>
+  );
+
+  const handleDragSortEnd2 = (newDataSource: any) => {
+    console.log('Sorting data', newDataSource);
+    setDatasource2(newDataSource);
+    formatMessage({
+      textMessage: 'Modify the list sort successfully',
+      type: 'success',
+    });
+  };
 
   const columns: ProColumns<DataSourceType>[] = [
     {
@@ -92,6 +160,14 @@ const Welcome: React.FC = () => {
           status: 'Success',
         },
       },
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      render: (text, record, _, action) => [
+        <StatusDesign
+          key={_}
+          text={record.state === 'open' ? 'unsolved' : 'solved'}
+          status={record.state === 'open' ? 'error' : 'success'}
+        />,
+      ],
     },
     {
       title: 'describe',
@@ -140,6 +216,25 @@ const Welcome: React.FC = () => {
     },
   ];
 
+  const columns2: ProColumns[] = [
+    {
+      title: 'Sort',
+      dataIndex: 'sort',
+    },
+    {
+      title: 'Name',
+      dataIndex: 'name',
+      className: 'drag-visible',
+    },
+    {
+      title: 'age',
+      dataIndex: 'age',
+    },
+    {
+      title: 'address',
+      dataIndex: 'address',
+    },
+  ];
   return (
     <PageContainer>
       <ButtonDesign type={'dashed'} text={'button'} />
@@ -231,6 +326,176 @@ const Welcome: React.FC = () => {
           onChange: setEditableRowKeys,
         }}
       />
+      <DividerDesign />
+      <TableDesign
+        typeTable={TYPE_TABLE.SORT_TABLE}
+        headerTitle="Drag and sort (custom handle)"
+        columns={columns2}
+        rowKey="index"
+        dataSource={dataSource2}
+        dragSortKey="sort"
+        dragSortHandlerRender={dragHandleRender}
+        onDragSortEnd={handleDragSortEnd2}
+      />
+      <DividerDesign />
+      <TableDesign<{ title: string }, any>
+        typeTable={TYPE_TABLE.TABLE_LIST}
+        toolBarRender={() => {
+          return [
+            <Button key="3" type="primary">
+              Newly built
+            </Button>,
+          ];
+        }}
+        itemLayout="vertical"
+        rowKey="id"
+        headerTitle="Vertical style"
+        dataSource={dataSource1}
+        metas={{
+          title: {},
+          description: {
+            render: () => (
+              <>
+                <Tag>Sparrow column</Tag>
+                <Tag>Design language</Tag>
+                <Tag>Ant Financial</Tag>
+              </>
+            ),
+          },
+          actions: {
+            render: () => [
+              <IconText icon={StarOutlined} text="156" key="list-vertical-star-o" />,
+              <IconText icon={LikeOutlined} text="156" key="list-vertical-like-o" />,
+              <IconText icon={MessageOutlined} text="2" key="list-vertical-message" />,
+            ],
+          },
+          extra: {
+            render: () => (
+              <img
+                width={272}
+                alt="logo"
+                src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+              />
+            ),
+          },
+          content: {
+            render: () => {
+              return (
+                <div>
+                  Duanzu signal: Ant Financial Design Platform Design.alipay.com, with the minimum
+                  workload, seamlessly access the Ant Financial Ecology, provides an experience
+                  solution for leapfrog design and development.Ant Financial Design Platform
+                  design.alipay.com, with the minimum workload and seamlessly access the Ant
+                  Financial Ecology to provide an experience solution for leapfrog design and
+                  development.
+                </div>
+              );
+            },
+          },
+        }}
+      />
+      <DividerDesign />
+      <DescriptionsDesign
+        title="Advanced Definition List Request Columns"
+        request={async () => {
+          return Promise.resolve({
+            success: true,
+            data: {
+              id: 'This is a piece of text Columns',
+              date: '20200809',
+              money: '1212100',
+              money2: -12345.33,
+              state: 'all',
+              switch: true,
+              state2: 'open',
+            },
+          });
+        }}
+        columns={[
+          {
+            title: 'text',
+            key: 'text',
+            dataIndex: 'id',
+          },
+          {
+            title: 'state',
+            key: 'state',
+            dataIndex: 'state',
+            valueType: 'select',
+            valueEnum: {
+              all: { text: 'all', status: 'Default' },
+              open: {
+                text: 'unsolved',
+                status: 'Error',
+              },
+              closed: {
+                text: 'solved',
+                status: 'Success',
+              },
+            },
+          },
+          {
+            title: 'State 2',
+            key: 'state2',
+            dataIndex: 'state2',
+          },
+          {
+            title: 'time',
+            key: 'date',
+            dataIndex: 'date',
+            valueType: 'date',
+          },
+          {
+            title: 'time',
+            key: 'date',
+            dataIndex: 'date',
+            valueType: 'date',
+            fieldProps: {
+              format: 'DD.MM.YYYY',
+            },
+          },
+          {
+            title: 'switch',
+            key: 'switch',
+            dataIndex: 'switch',
+            valueType: 'switch',
+          },
+          {
+            title: 'money',
+            key: 'money',
+            dataIndex: 'money',
+            valueType: 'money',
+            fieldProps: {
+              moneySymbol: '$',
+            },
+          },
+          {
+            title: 'Money non -symbol',
+            key: 'money',
+            dataIndex: 'money',
+            valueType: 'money',
+            fieldProps: {
+              moneySymbol: false,
+            },
+          },
+          {
+            title: 'MONEY negative number is not symbol',
+            key: 'money2',
+            dataIndex: 'money2',
+            valueType: 'money',
+            fieldProps: {
+              moneySymbol: false,
+            },
+          },
+        ]}
+      >
+        <ProDescriptions.Item dataIndex="percent" label="percentage" valueType="percent">
+          100
+        </ProDescriptions.Item>
+        <div>Surgery DOM</div>
+      </DescriptionsDesign>
+      <DividerDesign />
+      <StatusDesign text="done" />
     </PageContainer>
   );
 };

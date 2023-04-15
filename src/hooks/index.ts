@@ -80,3 +80,10 @@ export * from './hook-ts/useUpdateEffect';
 export { default as useUpdateEffect } from './hook-ts/useUpdateEffect';
 export * from './hook-ts/useWindowSize';
 export { default as useWindowSize } from './hook-ts/useWindowSize';
+//soket
+export { ReadyState } from './socket/constants';
+export { Options, SendMessage } from './socket/types';
+export { useEventSource } from './socket/use-event-source';
+export { useSocketIO } from './socket/use-socket-io';
+export { useWebSocket as default } from './socket/use-websocket';
+export { resetGlobalState } from './socket/util';

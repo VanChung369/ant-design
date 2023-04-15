@@ -1,4 +1,5 @@
 import type {
+  ActionType,
   EditableFormInstance,
   ProColumns,
   RequestData,
@@ -6,25 +7,32 @@ import type {
 } from '@ant-design/pro-components';
 import { EditableProTable } from '@ant-design/pro-components';
 import { RecordCreatorProps } from '@ant-design/pro-table/es/components/EditableTable';
-
-import { ButtonProps, TablePaginationConfig } from 'antd';
-import { SizeType } from 'antd/es/config-provider/SizeContext';
-import { SortOrder, TableLocale, TableRowSelection } from 'antd/es/table/interface';
+import { ButtonProps, SpinProps, TablePaginationConfig } from 'antd';
+import { PaginationConfig } from 'antd/es/pagination';
+import { SortOrder, TableRowSelection } from 'antd/es/table/interface';
+import classNames from 'classnames';
 import { GetRowKey } from 'rc-table/es/interface';
 import { Fragment, ReactNode, Ref } from 'react';
+import style from './index.less';
 
 type EditTableProps<T, D> = {
-  headerTitle?: string | ReactNode | any;
+  headerTitle?: string | ReactNode;
   editableFormRef?: Ref<EditableFormInstance>;
-  rowKey?: string | GetRowKey<any> | undefined;
+  rowKey?: string | GetRowKey<any>;
   recordCreatorProps?:
     | (RecordCreatorProps<any> &
         ButtonProps & {
           creatorButtonText?: ReactNode;
         })
     | false;
+  toolBarRender?:
+    | false
+    | ((
+        action: ActionType | undefined,
+        rows: { selectedRowKeys?: (string | number)[] | undefined; selectedRows?: T[] | undefined },
+      ) => ReactNode[]);
   maxLength?: number;
-  toolBarRender?: false | any;
+  value?: readonly T[];
   request?: (
     params: D & {
       pageSize?: number;
@@ -34,29 +42,21 @@ type EditTableProps<T, D> = {
     sort: Record<string, SortOrder>,
     filter: Record<string, (string | number)[] | null>,
   ) => Promise<Partial<RequestData<T>>>;
-  columns?: ProColumns<any, any>[] | undefined;
-  rowSelection?: false | TableRowSelection<any> | undefined;
+  columns?: ProColumns<any, any>[];
+  rowSelection?: false | TableRowSelection<any>;
   editable?: RowEditableConfig<T>;
   className?: string;
   scroll?: any;
-  bordered?: boolean;
-  pagination?: false | TablePaginationConfig | undefined;
-  dataSource?: readonly any[] | undefined;
-  loading?: boolean;
-  rowClassName?: string;
-  size?: SizeType;
-  showSorterTooltip?: boolean;
+  pagination?:
+    | false
+    | (false & PaginationConfig)
+    | (TablePaginationConfig & false)
+    | (TablePaginationConfig & PaginationConfig);
+  loading?: boolean | SpinProps;
+  controlled?: boolean;
   onChange?: (value: readonly T[]) => void;
-  isPagination?: boolean;
-  totalPagination?: number;
-  currentPagination?: number;
-  onChangePagination?: ((page: number, pageSize: number) => void) | undefined;
-  pageSizeOptions?: string[];
-  pageSizePagination?: number;
-  classNamePagination?: string;
-  locale?: TableLocale | undefined;
-  justify?: 'center' | 'end' | 'start' | 'space-around' | 'space-between' | 'space-evenly';
-
+  actionRef?: Ref<ActionType>;
+  dataSource?: readonly T[] & T[];
   [key: string]: any;
 };
 
@@ -72,20 +72,34 @@ const EditTable = <T extends Record<string, any>, D extends Record<string, any>>
   onChange,
   editable,
   value,
+  className,
+  controlled,
+  editableFormRef,
+  actionRef,
+  pagination = false,
+  dataSource,
+  toolBarRender = false,
   ...props
 }: EditTableProps<T, D>) => {
   return (
     <Fragment>
       <EditableProTable<T, D>
+        editableFormRef={editableFormRef}
+        controlled={controlled}
+        toolBarRender={toolBarRender}
+        className={classNames(style.editableTable, className)}
         headerTitle={headerTitle}
         maxLength={maxLength}
         columns={columns}
+        actionRef={actionRef}
         request={request}
         value={value}
+        dataSource={dataSource}
         onChange={onChange}
         scroll={scroll || { x: 960 }}
         recordCreatorProps={recordCreatorProps}
         rowKey={rowKey}
+        pagination={pagination}
         editable={editable}
         loading={loading}
         {...props}

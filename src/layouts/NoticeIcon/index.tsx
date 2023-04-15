@@ -117,8 +117,8 @@ const NoticeIconView: React.FC = () => {
       }}
       onClear={(title: string, key: string) => clearReadState(title, key)}
       loading={false}
-      clearText="Clear"
-      viewMoreText="see more"
+      clearText="CLEAR"
+      viewMoreText="SEE MORE"
       onViewMore={() => message.info('Click on view more')}
       clearClose
     >
@@ -126,7 +126,7 @@ const NoticeIconView: React.FC = () => {
         tabKey="notification"
         count={unreadMsg.notification}
         list={noticeData.notification}
-        title="notify"
+        title="NOTIFY"
         emptyText="You have checked all notifications"
         showViewMore
       />
@@ -134,13 +134,13 @@ const NoticeIconView: React.FC = () => {
         tabKey="message"
         count={unreadMsg.message}
         list={noticeData.message}
-        title="information"
+        title="INFORMATION"
         emptyText="You have read all messages"
         showViewMore
       />
       <NoticeIcon.Tab
         tabKey="event"
-        title="Upcoming"
+        title="UPCOMING"
         emptyText="You have done all to do"
         count={unreadMsg.event}
         list={noticeData.event}

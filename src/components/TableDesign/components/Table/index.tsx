@@ -1,12 +1,14 @@
 import { TABLE } from '@/constants/table';
-import { ActionType, ProColumns } from '@ant-design/pro-components';
-import ProTable from '@ant-design/pro-table';
+import { ActionType, ProColumns, RequestData } from '@ant-design/pro-components';
+import { ProTable } from '@ant-design/pro-table';
 import { SearchConfig } from '@ant-design/pro-table/es/components/Form/FormRender';
-import { Pagination, Row, TablePaginationConfig } from 'antd';
+import { Pagination, Row, SpinProps, TablePaginationConfig, TooltipProps } from 'antd';
 import { SizeType } from 'antd/es/config-provider/SizeContext';
+import { PaginationConfig } from 'antd/es/pagination';
 import {
   FilterValue,
   SorterResult,
+  SortOrder,
   TableCurrentDataSource,
   TableLocale,
   TableRowSelection,
@@ -15,24 +17,41 @@ import classNames from 'classnames';
 import { GetRowKey } from 'rc-table/es/interface';
 import { Fragment, ReactNode, Ref } from 'react';
 
-type TableProps = {
+type TableProps<T, D> = {
   headerTitle?: string | ReactNode;
-  actionRef?: Ref<ActionType | undefined> | undefined;
-  rowKey?: string | GetRowKey<any> | undefined;
-  search?: false | SearchConfig | undefined;
-  toolBarRender?: false | any;
-  request?: any;
-  columns?: ProColumns<any, any>[] | undefined;
-  rowSelection?: false | TableRowSelection<any> | undefined;
+  actionRef?: Ref<ActionType | undefined>;
+  rowKey?: string | GetRowKey<any>;
+  search?: false | SearchConfig;
+  toolBarRender?:
+    | false
+    | ((
+        action: ActionType | undefined,
+        rows: { selectedRowKeys?: (string | number)[] | undefined; selectedRows?: T[] | undefined },
+      ) => ReactNode[]);
+  request?: (
+    params: D & {
+      pageSize?: number;
+      current?: number;
+      keyword?: string;
+    },
+    sort: Record<string, SortOrder>,
+    filter: Record<string, (string | number)[] | null>,
+  ) => Promise<Partial<RequestData<T>>>;
+  columns?: ProColumns<any, any>[];
+  rowSelection?: false | TableRowSelection<any>;
   className?: string;
   scroll?: any;
   bordered?: boolean;
-  pagination?: false | TablePaginationConfig | undefined;
-  dataSource?: readonly any[] | undefined;
-  loading?: boolean;
+  pagination?:
+    | false
+    | (false & PaginationConfig)
+    | (TablePaginationConfig & false)
+    | (TablePaginationConfig & PaginationConfig);
+  dataSource?: readonly T[] & T[];
+  loading?: boolean | SpinProps;
   rowClassName?: string;
   size?: SizeType;
-  showSorterTooltip?: boolean;
+  showSorterTooltip?: boolean | TooltipProps;
   onChange?: (
     pagination: TablePaginationConfig,
     filters: Record<string, FilterValue | null>,
@@ -40,14 +59,14 @@ type TableProps = {
     extra: TableCurrentDataSource<any>,
   ) => void;
   isPagination?: boolean;
-  sizePagination?: 'small' | 'default' | undefined;
+  sizePagination?: 'small' | 'default';
   totalPagination?: number;
   currentPagination?: number;
-  onChangePagination?: ((page: number, pageSize: number) => void) | undefined;
+  onChangePagination?: (page: number, pageSize: number) => void;
   pageSizeOptions?: string[];
   pageSizePagination?: number;
   classNamePagination?: string;
-  locale?: TableLocale | undefined;
+  locale?: TableLocale;
   justify?: 'center' | 'end' | 'start' | 'space-around' | 'space-between' | 'space-evenly';
 
   [key: string]: any;
@@ -83,7 +102,7 @@ const Table = <T extends Record<string, any>, D extends Record<string, any>>({
   justify = 'end',
   locale,
   ...props
-}: TableProps) => {
+}: TableProps<T, D>) => {
   return (
     <Fragment>
       <ProTable<T, D>
