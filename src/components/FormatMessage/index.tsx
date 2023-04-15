@@ -1,7 +1,12 @@
 import { getIntl, getLocale } from '@umijs/max';
 import { message } from 'antd';
 
-export default function formatMessage({ descriptor, type, value }: FormatMessage.MessageProps) {
+export default function formatMessage({
+  descriptor,
+  type,
+  value,
+  textMessage,
+}: FormatMessage.MessageProps) {
   const intl = getIntl(getLocale());
 
   message.config({
@@ -11,9 +16,9 @@ export default function formatMessage({ descriptor, type, value }: FormatMessage
 
   if (type) {
     return message[type]({
-      content: intl.formatMessage(descriptor, value),
+      content: descriptor ? intl.formatMessage(descriptor, value) : textMessage,
     });
   }
 
-  return intl.formatMessage(descriptor, value);
+  return descriptor ? intl.formatMessage(descriptor, value) : '';
 }

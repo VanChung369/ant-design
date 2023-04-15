@@ -9,7 +9,7 @@ export async function getFakeCaptcha(
   options?: { [key: string]: any },
 ) {
   return api.get<API.FakeCaptcha>({
-    endpoint: '/api/login/account',
+    endpoint: '/api/login/captcha',
     params: params,
     options: options,
   });

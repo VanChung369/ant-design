@@ -2,8 +2,9 @@ import { Button, Dropdown, Tooltip } from 'antd';
 import classNames from 'classnames';
 import { FC } from 'react';
 import style from './index.less';
+import { ButtonDesignProps } from './typings';
 
-const ButtonDesign: FC<ButtonDesign.ButtonProps> = ({
+const ButtonDesign: FC<ButtonDesignProps> = ({
   dropdown = false,
   titleTooltip,
   triggerTooltip,

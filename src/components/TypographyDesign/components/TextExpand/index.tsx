@@ -51,7 +51,11 @@ const TextExpand: FC<TextExpandProps> = ({
           onClick={() => {
             setEllipsis(!ellipsis);
           }}
-          text={textButton || intl.formatMessage({ id: 'common.textExpand.readMore' })}
+          text={
+            textButton || ellipsis
+              ? intl.formatMessage({ id: 'common.textExpand.readMore' })
+              : intl.formatMessage({ id: 'common.textExpand.showLess' })
+          }
         />
       </Row>
     </>

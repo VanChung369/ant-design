@@ -1,9 +1,10 @@
+import { DividerDesignProps } from '@/components/DividerDesign/typings';
 import { Divider } from 'antd';
 import classNames from 'classnames';
 import { FC } from 'react';
 import styleLess from './index.less';
 
-const DividerDesign: FC<DividerDesign.DividerProps> = ({
+const DividerDesign: FC<DividerDesignProps> = ({
   dashed,
   orientation,
   orientationMargin,

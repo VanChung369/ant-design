@@ -220,7 +220,6 @@ const TableList: React.FC = () => {
           id: 'pages.searchTable.title',
           defaultMessage: 'Enquiry form',
         })}
-        actionRef={actionRef}
         rowKey="key"
         search={{
           labelWidth: 120,
