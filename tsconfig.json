@@ -15,9 +15,10 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["./src/*"],
-      "@@/*": ["./src/.umi/*"],
+      "@@/*": ["./*"],
+      "@@@/*": ["./src/*"],
       "@@test/*": ["./src/.umi-test/*"]
     }
   },
-  "include": ["./**/*.d.ts", "./**/*.ts", "./**/*.tsx"]
+  "include": ["./**/*.d.ts", "./**/*.ts", "./**/*.tsx", "src/service-worker.js"]
 }

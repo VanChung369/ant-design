@@ -8,13 +8,14 @@ import { StatusDesignProps } from './typings';
 
 const StatusDesign: FC<StatusDesignProps> = ({
   text,
-  status = 'processing',
+  status = 'default',
   className,
+  badge = false,
   ...props
 }) => {
   return (
     <div className={classnames(style.status, [style[`status-${status}`]], className)} {...props}>
-      <Badge status={status} />
+      {badge && <Badge status={status} />}
       <TypographyDesign
         className={classnames([style[`text--color-${status}`]])}
         typeTypography={TYPE_TYPOGRAPHY.TEXT_ELLIPSIS}
